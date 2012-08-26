@@ -72,3 +72,11 @@ lib/vetags/lang/clojure/helloworld
 .tox
 .coverage
 junit-py*
+
+
+#### my project
+pipeline
+socketIO_client
+websocket.py
+fluent
+
