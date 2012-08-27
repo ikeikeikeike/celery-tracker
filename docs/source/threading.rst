@@ -2,7 +2,7 @@ Threading
 =====================
 
 
-BaseThread
+BasePlugin
 ----------------
 
 

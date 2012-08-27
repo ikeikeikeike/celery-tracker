@@ -7,7 +7,6 @@ from __future__ import absolute_import
 
 
 import sys
-from celery.exceptions import ImproperlyConfigured
 
 
 def _resolve_name(name, package, level):
@@ -56,7 +55,7 @@ def import_class(full_backend_path):
     path_bits = full_backend_path.split('.')
 
     if len(path_bits) < 2:
-        raise ImproperlyConfigured(
+        raise ImportError(
             "The provided backend '{0}' is not a complete Python "
             "path to a BaseEngine subclass.".format(full_backend_path))
 

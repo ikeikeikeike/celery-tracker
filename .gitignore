@@ -79,4 +79,5 @@ pipeline
 socketIO_client
 websocket.py
 fluent
+celeryconfig.py
 

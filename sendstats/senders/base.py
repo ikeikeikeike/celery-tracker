@@ -17,16 +17,14 @@ class BaseSender(object):
     __metaclass__ = abc.ABCMeta
 
     lock = threading.Lock()
-    socket = None
-    verbose = False
 
-    def sending(self, data):
+    def send(self, data):
         self.lock.acquire()
         try:
-            self.send(data)
+            self._send(data)
         finally:
             self.lock.release()
 
     @abc.abstractmethod
-    def send(self, data):
+    def _send(self, data):
         """ implements method """

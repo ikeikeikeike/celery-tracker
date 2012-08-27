@@ -12,14 +12,10 @@ from .base import BaseSender
 
 class FluentSender(BaseSender):
 
-    def __init__(self, tag="app.debug", host="192.168.11.9", port=24224, **kwargs):
-        """
-
-        .. todo:: args
-
-        """
+    def __init__(self, tag, host, port, **kwargs):
         self.sender = sender.FluentSender(tag, host=host, port=port)
+        self.verbose = True
 
-    def send(self, data):
+    def _send(self, data):
         """ implements method """
         self.sender.emit(None, data)

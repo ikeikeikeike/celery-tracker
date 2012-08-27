@@ -11,7 +11,7 @@ from .configs import settings
 
 class SendStatsService(object):
 
-    def __init__(self, logger, http_port=8989, http_address='', plugins=None):
+    def __init__(self, logger, http_port=12201, http_address='', plugins=None):
         """
 
         .. todo:: Fix plugins settings
@@ -29,7 +29,7 @@ class SendStatsService(object):
 
     def plugin_start(self):
         for plugin in self.get_plugins():
-            plugin().start()
+            plugin(logger=self.logger).start()
 
     def get_plugins(self):
         """ From str to class object """

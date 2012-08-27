@@ -9,5 +9,5 @@ from __future__ import absolute_import
 from .base import BaseSender
 
 
-class LoggingSender(BaseSender):
-    pass
+#class LoggingSender(BaseSender):
+#    pass

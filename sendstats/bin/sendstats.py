@@ -74,16 +74,21 @@ class SendStatsCommand(Command):
 
         app.log.setup_logging_subsystem(loglevel=loglevel, logfile=logfile)
         logger = app.log.get_default_logger(name="celery.{0}".format(self.namespace))
-        monitor = SendStatsService(
+        sendstats = SendStatsService(
             logger=logger, http_port=http_port, http_address=http_address, plugins=plugins)
         try:
-            monitor.start()
+            sendstats.start()
         except Exception, exc:
             logger.error("%s raised exception %r\n%s" % (self.namespace, exc, traceback.format_exc()))
         except KeyboardInterrupt:
             pass
 
     def get_options(self):
+        """
+
+        .. todo:: plugin exchange program.
+
+        """
         conf = self.app.conf
         return super(SendStatsCommand, self).get_options() + (
             Option('-p', '--plugins',
@@ -114,10 +119,10 @@ try:
     # celery 3.x extension command
     from celery.bin.celery import Delegate
 
-    class MonitorDelegate(Delegate):
+    class SendStatsDelegate(Delegate):
         Command = SendStatsCommand
 except ImportError:
-    class MonitorDelegate(object):  # noqa
+    class SendStatsDelegate(object):  # noqa
         pass
 
 

@@ -6,10 +6,10 @@ from __future__ import print_function
 from __future__ import absolute_import
 
 
-from .base import BaseThread
+from .base import BasePlugin
 
 
-class LoggingThread(BaseThread):
+class LoggingPlugin(BasePlugin):
 
     def send(self):
         """ implements method """
