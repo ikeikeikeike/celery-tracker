@@ -2,8 +2,8 @@
 from __future__ import absolute_import
 from __future__ import with_statement
 
-import sys
 # import os
+import sys
 import traceback
 from celery.platforms import (
     set_process_title,
@@ -94,7 +94,7 @@ class SendStatsCommand(Command):
             Option('-p', '--plugins',
                    action='callback', type='string', default=conf.CELERY_SENDSTATS_PLUGINS,
                    callback=csv_callback,
-                   help=("List of plugins to enable for this threading, separated by\n"
+                   help=("List of plugins to enable for this process, separated by\n"
                          "comma. By default all configured plugins are enabled.\n"
                          "Example: -p zabbix,logging,fluent")),
             Option('-l', '--loglevel',

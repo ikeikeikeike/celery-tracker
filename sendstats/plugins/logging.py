@@ -11,6 +11,12 @@ from .base import BasePlugin
 
 class LoggingPlugin(BasePlugin):
 
+    def __init__(self, tag, **kwargs):
+        super(LoggingPlugin, self).__init__(**kwargs)
+
     def send(self):
         """ implements method """
-        print("send logging")
+        if self.verbose:
+            self.logger.debug(
+                "LoggingPlugin: (host)%s:%s, (tag)%s, (data)%r " % (
+                    "localhost", "none", "logging", {}))

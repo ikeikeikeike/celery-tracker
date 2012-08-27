@@ -1,12 +1,12 @@
 from __future__ import print_function
 from __future__ import absolute_import
 
+
 from celerymon.consumer import EventConsumer
 from celerymon.web import WebServerThread
 
 
 from .utils.loader import import_class
-from .configs import settings
 
 
 class SendStatsService(object):
@@ -28,14 +28,14 @@ class SendStatsService(object):
         EventConsumer().start()
 
     def plugin_start(self):
-        for plugin in self.get_plugins():
-            plugin(logger=self.logger).start()
+        """ From str to class object """
+        for plugin_name in self.get_plugins():
+            plugin = self.plugins[plugin_name]
+
+            klass = import_class(plugin.pop("class"))
+            klass(logger=self.logger, **plugin).start()
 
     def get_plugins(self):
-        """ From str to class object """
-        plugins = settings.CELERY_SENDSTATS_PLUGINS
-        if self.plugins:
-            plugins = self.plugins
-        return [import_class(plugin) for plugin in plugins]
-
-
+        if isinstance(self.plugins, (tuple, list, set)):
+            return [plugin for plugin in plugins if plugin in self.plugins]
+        return self.plugins

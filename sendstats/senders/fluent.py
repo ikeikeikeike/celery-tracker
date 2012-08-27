@@ -14,7 +14,6 @@ class FluentSender(BaseSender):
 
     def __init__(self, tag, host, port, **kwargs):
         self.sender = sender.FluentSender(tag, host=host, port=port)
-        self.verbose = True
 
     def _send(self, data):
         """ implements method """

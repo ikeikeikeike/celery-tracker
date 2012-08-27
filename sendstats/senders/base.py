@@ -9,6 +9,7 @@ from __future__ import absolute_import
 
 
 import threading
+#import multiprocessing
 import abc  # from zope.interface import implements
 
 
@@ -17,6 +18,7 @@ class BaseSender(object):
     __metaclass__ = abc.ABCMeta
 
     lock = threading.Lock()
+#    lock = multiprocessing.Lock()
 
     def send(self, data):
         self.lock.acquire()

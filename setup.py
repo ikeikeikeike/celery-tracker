@@ -54,7 +54,7 @@ setup(
             "sendstats = sendstats.bin.sendstats:main",
         ],
         "celery.commands": [
-            "sendstats = sendstats.bin.sendstats:MonitorDelegate",
+            "sendstats = sendstats.bin.sendstats:SendStatsDelegate",
         ],
     }
 )
