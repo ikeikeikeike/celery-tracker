@@ -7,6 +7,7 @@ from celerymon.web import WebServerThread
 
 
 from .utils.loader import import_class
+from .tracking.storage import EventStorage
 
 
 class SendStatsService(object):
@@ -23,17 +24,19 @@ class SendStatsService(object):
         self.plugins = plugins or []
 
     def start(self):
-        self.plugin_start()
         WebServerThread(port=self.http_port, address=self.http_address).start()
+        storage = EventStorage(plugins=self.get_plugins())
+        self.plugin_start(storage)
+        storage.start()
         EventConsumer().start()
 
-    def plugin_start(self):
+    def plugin_start(self, storage):
         """ From str to class object """
         for plugin_name in self.get_plugins():
             plugin = self.plugins[plugin_name]
 
             klass = import_class(plugin.pop("class"))
-            klass(logger=self.logger, **plugin).start()
+            klass(logger=self.logger, storage=storage, **plugin).start()
 
     def get_plugins(self):
         if isinstance(self.plugins, (tuple, list, set)):

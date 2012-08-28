@@ -41,6 +41,10 @@ def show_worker(node_name):
         raise KeyError("Unknown worker node: {0}".format(node_name))
 
 
+def clear():
+    state.clear()
+
+
 def list_worker_tasks(hostname, limit=None):
     limit = limit and int(limit) or None
     return state.tasks_by_worker(hostname, limit=limit)

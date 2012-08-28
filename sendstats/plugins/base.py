@@ -14,11 +14,8 @@ import time
 import abc   # from zope.interface import implements
 
 
-from ..tracking import state
-
-
 # Variables
-_INTERVAL = 60
+_INTERVAL = 300
 _VERBOSE = False
 
 
@@ -28,14 +25,16 @@ class BasePlugin(threading.Thread):
 
     __metaclass__ = abc.ABCMeta
 
-    def __init__(self, logger, verbose=_VERBOSE, interval=_INTERVAL, **kwargs):
+    def __init__(self, logger, tag, storage,
+                 verbose=_VERBOSE, interval=_INTERVAL, **kwargs):
         super(BasePlugin, self).__init__(**kwargs)
 
         self.interval = interval
+        self.storage = storage
         self.verbose = verbose
         self.logger = logger
         self.daemon = True
-        self.state = state
+        self.tag  = tag
 
     def run(self):
         while True:
