@@ -45,6 +45,14 @@ def clear():
     state.clear()
 
 
+def tasks():
+    return state.tasks
+
+
+def workers():
+    return state.workers
+
+
 def list_worker_tasks(hostname, limit=None):
     limit = limit and int(limit) or None
     return state.tasks_by_worker(hostname, limit=limit)

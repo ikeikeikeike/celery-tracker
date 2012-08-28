@@ -41,21 +41,25 @@ class EventStorage(threading.Thread):
         self.state.list_worker_tasks(hostname)
         self.state.list_tasks_by_name(task_name)
         """
-        data = []
+        data = {}
+        event = []
 
         for task in self.state.list_task_types():
-            data.append({
+            event.append({
                 "{0}".format(task): self._to_dict(
                     self.state.list_tasks_by_name(task))
             })
 
         for worker in self.state.list_workers():
-            data.append({
+            event.append({
                 "{0}".format(worker.hostname): self._to_dict(
                     self.state.list_worker_tasks(worker.hostname))
             })
 
-        if data:
+        if event:
+            data.update({"tasks": self.state.tasks()})
+            data.update({"workers": self.state.workers()})
+            data.update({"event": event})
             for plugin_name in self.plugins:
                 self.storage[plugin_name].append(data)
 
