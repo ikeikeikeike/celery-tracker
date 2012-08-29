@@ -45,16 +45,16 @@ class EventStorage(threading.Thread):
         event = []
 
         for task in self.state.list_task_types():
-            event.append({
-                "{0}".format(task): self._to_dict(
-                    self.state.list_tasks_by_name(task))
-            })
+            for task_data in self.state.list_tasks_by_name(task):
+                event.append({
+                    "{0}".format(task): self._to_dict(task_data[1])
+                })
 
         for worker in self.state.list_workers():
-            event.append({
-                "{0}".format(worker.hostname): self._to_dict(
-                    self.state.list_worker_tasks(worker.hostname))
-            })
+            for worker_data in self.state.list_worker_tasks(worker.hostname):
+                event.append({
+                    "{0}".format(worker.hostname): self._to_dict(worker_data[1])
+                })
 
         if event:
             data.update({"tasks": self.state.tasks()})
@@ -72,5 +72,4 @@ class EventStorage(threading.Thread):
         return self.storage[plugin_name].pop(0)
 
     def _to_dict(self, data):
-        return self.serialize.deserialize(
-            self.serialize.serialize(data))
+        return self.serialize.deserialize(self.serialize.serialize(data))

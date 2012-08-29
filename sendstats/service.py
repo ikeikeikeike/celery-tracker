@@ -40,5 +40,5 @@ class SendStatsService(object):
 
     def get_plugins(self):
         if isinstance(self.plugins, (tuple, list, set)):
-            return [plugin for plugin in plugins if plugin in self.plugins]
+            return [p for p in plugins if p in self.plugins]
         return self.plugins

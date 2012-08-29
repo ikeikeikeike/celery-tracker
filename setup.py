@@ -43,11 +43,11 @@ setup(
     long_description=open('README.rst').read(),
     author='Tatsuo Ikeda',
     author_email='jp.ne.co.jp at gmail.com',
-    url='https://github.com/ikeikeikeike/celery-send-stats',
+    url='https://github.com/ikeikeikeike/celery-sendstats',
     license='MIT',
     classifiers=classifiers,
     packages=find_packages(exclude=['tests', 'tests.*']),
-    install_requires=['celery', 'celerymon', 'tornado', 'fluent-logger'],
+    install_requires=['celery', 'celerymon', 'tornado', 'fluent-logger', 'zbxsend'],
     package_data={'sendstats': ['templates/*', 'static/**/*']},
     entry_points={
         "console_scripts": [

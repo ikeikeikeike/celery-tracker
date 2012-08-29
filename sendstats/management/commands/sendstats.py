@@ -6,14 +6,14 @@ from djcelery.management.base import CeleryCommand
 
 from sendstats.bin.sendstats import SendStatsCommand
 
-monitor = SendStatsCommand(app=app)
+sendstats = SendStatsCommand(app=app)
 
 
 class Command(CeleryCommand):
-    """Run the celery monitor."""
-    option_list = CeleryCommand.option_list + monitor.get_options()
-    help = 'Run the celery monitor'
+    """Run the celery sendstats."""
+    option_list = CeleryCommand.option_list + sendstats.get_options()
+    help = 'Run the celery sendstats'
 
     def handle(self, *args, **options):
         """Handle the management command."""
-        monitor.run(**options)
+        sendstats.run(**options)

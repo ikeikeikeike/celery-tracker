@@ -24,8 +24,13 @@ class FluentPlugin(BasePlugin):
         """ implements method """
         event = self.storage.event("fluent")
         for data in event and event["event"]:
-            if self.verbose:
+            if self.verbose > 2:
                 self.logger.debug(
                     "FluentPlugin: (host)%s:%s, (tag)%s, (data)%r " % (
                         self.host, self.port, self.tag, data))
             self.sender.send(data)
+
+        if not event:
+             self.logger.debug(
+                "FluentPlugin: (host)%s:%s, (tag)%s, (event)%s " % (
+                    self.host, self.port, self.tag, event))
