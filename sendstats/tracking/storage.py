@@ -19,6 +19,13 @@ _INTERVAL = 15
 class EventStorage(threading.Thread):
 
     def __init__(self, plugins, storage, interval=_INTERVAL, **kwargs):
+        """
+        Event Storage class.
+
+        :param list plugins: Plugin list.
+        :param str storage: Path to storage.
+        :param int interval: Interval in seconds.
+        """
         super(EventStorage, self).__init__(**kwargs)
 
         self.state = state
@@ -33,11 +40,15 @@ class EventStorage(threading.Thread):
                 self.storage.update({plugin_name: {}})
 
     def run(self):
+        """
+        Runner
+        """
         while True:
             self.set_events()
             time.sleep(self.interval)
 
     def set_events(self):
+        """ Set event tracking data. """
         tasks = []
         workers = []
 
@@ -60,6 +71,13 @@ class EventStorage(threading.Thread):
         self.state.clear()
 
     def event(self, plugin_name):
+        """
+        Get event tracking data.
+
+        :param str plugin_name: Select from a plugins package.
+        :rtype: dict
+        :return: event tracking data.
+        """
         with self.cv:
             while not self.storage[plugin_name]:
                 self.cv.wait()
@@ -94,13 +112,6 @@ class EventStorage(threading.Thread):
             pass
 
     def _merge_events(self, events, tasks, workers):
-        """
-        :param dict events:
-        :param list tasks:
-        :param list workers:
-        :rtype: dict
-        :return: Merged dictionary.
-        """
 #        tasks_original = self.state.tasks()
 #        workers_original = self.state.workers()
         tasks_ = events.get("tasks", [])

@@ -14,6 +14,7 @@ import abc  # from zope.interface import implements
 
 
 class BaseSender(object):
+    """ Base Sender Class """
 
     __metaclass__ = abc.ABCMeta
 
@@ -21,6 +22,7 @@ class BaseSender(object):
     lock = threading.Lock()
 
     def send(self, data):
+        """ Will be executed from run method. """
         with self.lock:
             self._send(data)
 

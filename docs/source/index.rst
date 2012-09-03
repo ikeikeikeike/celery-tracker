@@ -11,7 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 5
 
+   installation
    plugins
+   tracking
 
 Change History:
 

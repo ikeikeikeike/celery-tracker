@@ -1,16 +1,14 @@
 Plugins
-==============
+==========
 
-booting plugins
+Booting plugins
 
-* zabbix - zabbix post threading.Thread
-* nagios - nagios post threading.Thread
-* munin - munin post threading.Thread
-* fluent - flutnd post threading.Thread
-* EventConsumer - celery event capture - requirements
+* Zabbix - zabbix post threading.Thread
+* Fluent - Flutnd post threading.Thread
+* Nagios - Nagios post threading.Thread
+* Munin - Munin post threading.Thread
 
-
-set args
+Set args
 --------------------
 
 .. highlight:: bash
@@ -21,7 +19,7 @@ set args
     $ celry sendstas --plugins=zabbix,nagios,munin,fluent
 
 
-django setting
+Django setting
 --------------------
 
 .. highlight:: python
@@ -33,4 +31,28 @@ django setting
     CELERY_SENDSTATS_PLUGINS = (
         "path.to.class.zabbix.Zabbix", ""path.to.class.nagios.Nagios",
     )
+
+
+Reference
+--------------------
+
+
+Base
+~~~~~~~~~~
+
+.. autoclass:: sendstats.plugins.base.BasePlugin
+   :members:
+
+Zabbix
+~~~~~~~
+
+.. autoclass:: sendstats.plugins.zabbix.ZabbixPlugin
+   :members:
+
+Fluent
+~~~~~~~~~~
+
+.. autoclass:: sendstats.plugins.fluent.FluentPlugin
+   :members:
+
 

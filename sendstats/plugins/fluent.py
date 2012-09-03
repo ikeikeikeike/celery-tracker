@@ -11,8 +11,14 @@ from ..senders.fluent import FluentSender
 
 
 class FluentPlugin(BasePlugin):
+    """ Plugin for Fluent. """
 
     def __init__(self, host, port, **kwargs):
+        """
+
+        :param str host: host@celeryconfig.CELERY_SENDSTATS_PLUGINS
+        :param int port: port@celeryconfig.CELERY_SENDSTATS_PLUGINS
+        """
         super(FluentPlugin, self).__init__(**kwargs)
 
         self.host = host

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Zabbix Plugin
 
@@ -15,8 +14,14 @@ from zbxsend import (
 
 
 class ZabbixPlugin(BasePlugin):
+    """ Plugin for Zabbix. """
 
     def __init__(self, host, port, metrics, **kwargs):
+        """
+        :param str host: host@celeryconfig.CELERY_SENDSTATS_PLUGINS
+        :param int port: port@celeryconfig.CELERY_SENDSTATS_PLUGINS
+        :param dict metrics: metrics@celeryconfig.CELERY_SENDSTATS_PLUGINS
+        """
         super(ZabbixPlugin, self).__init__(**kwargs)
 
         self.host = host
@@ -25,6 +30,7 @@ class ZabbixPlugin(BasePlugin):
         self.sender = send_to_zabbix
 
     def pop_event(self):
+        """ Get event tracking data. """
         return self.storage.event("zabbix")
 
     def send(self):
@@ -65,11 +71,9 @@ class ZabbixPlugin(BasePlugin):
     def _average(self, event):
         """ average """
         metrics = []
-
         average = event and event["workers_average"]
         for key in average:
             self._add_metrics(metrics=metrics, key=key, value=average[key])
-
         average = event and event["tasks_average"]
         for key in average:
             self._add_metrics(metrics=metrics, key=key, value=average[key])

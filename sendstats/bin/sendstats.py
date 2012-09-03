@@ -82,11 +82,6 @@ class SendStatsCommand(Command):
             pass
 
     def get_options(self):
-        """
-
-        .. todo:: plugin exchange program.
-
-        """
         conf = self.app.conf
         return super(SendStatsCommand, self).get_options() + (
             Option('-p', '--plugins',

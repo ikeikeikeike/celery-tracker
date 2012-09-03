@@ -11,8 +11,15 @@ from .base import BaseSender
 
 
 class FluentSender(BaseSender):
+    """ Sender class for Fluent. """
 
     def __init__(self, tag, host, port, **kwargs):
+        """
+
+        :param str tag: Tag name
+        :param str host: Dest.
+        :param int port: port.
+        """
         self.sender = sender.FluentSender(tag, host=host, port=port)
 
     def _send(self, data):
