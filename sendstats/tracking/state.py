@@ -38,7 +38,8 @@ def show_worker(node_name):
     try:
         return state.workers[node_name]
     except KeyError:
-        raise KeyError("Unknown worker node: {0}".format(node_name))
+        raise KeyError(
+            "Unknown worker node: {0}".format(node_name))
 
 
 def clear():

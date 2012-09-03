@@ -23,14 +23,19 @@ class FluentPlugin(BasePlugin):
     def send(self):
         """ implements method """
         event = self.storage.event("fluent")
-        for data in event and event["event"]:
-            if self.verbose > 2:
-                self.logger.debug(
-                    "FluentPlugin: (host)%s:%s, (tag)%s, (data)%r " % (
-                        self.host, self.port, self.tag, data))
-            self.sender.send(data)
 
-        if not event:
-             self.logger.debug(
-                "FluentPlugin: (host)%s:%s, (tag)%s, (event)%s " % (
-                    self.host, self.port, self.tag, event))
+        workers_average = event and event["workers_average"]
+        self.sender.send(workers_average)
+
+        tasks_average = event and event["tasks_average"]
+        self.sender.send(tasks_average)
+
+        self._logging(workers_average)
+        self._logging(tasks_average)
+        if self.verbose > 0:
+            self._logging(event, "debug")
+
+    def _logging(self, event, level="info"):
+        logger = getattr(self.logger, level)
+        logger("FluentPlugin/%s:%s tag: %s event: %r " % (
+            self.host, self.port, self.tag, event))

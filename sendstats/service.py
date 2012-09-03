@@ -12,20 +12,17 @@ from .tracking.storage import EventStorage
 
 class SendStatsService(object):
 
-    def __init__(self, logger, http_port=12201, http_address='', plugins=None):
-        """
-
-        .. todo:: Fix plugins settings
-
-        """
+    def __init__(self, logger, http_port=12201, http_address='',
+                 plugins=None, storage=None, **kwargs):
         self.logger = logger
         self.http_port = http_port
         self.http_address = http_address
         self.plugins = plugins or []
+        self.storage = storage or {}
 
     def start(self):
         WebServerThread(port=self.http_port, address=self.http_address).start()
-        storage = EventStorage(plugins=self.get_plugins())
+        storage = EventStorage(plugins=self.get_plugins(), storage=self.storage)
         self.plugin_start(storage)
         storage.start()
         EventConsumer().start()

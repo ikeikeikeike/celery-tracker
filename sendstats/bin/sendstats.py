@@ -17,9 +17,8 @@ from celery.bin.base import (
 )
 from celerymon.bin.celerymon import STARTUP_INFO_FMT
 from celery.utils import LOG_LEVELS
-# from celerymon.bin import celerymon
 
-# from .. import service
+
 from .. import get_version
 from ..service import SendStatsService
 
@@ -27,13 +26,6 @@ from ..service import SendStatsService
 def csv_callback(option, opt, value, parser):
     setattr(parser.values, option.dest, value.split(','))
 
-
-# TODO: Original Service
-#celerymon.MonitorService = service.MonitorService
-#SendStatsCommand = celerymon.MonitorCommand
-#SendStatsCommand.namespace = "sendstats"
-#SendStatsCommand.preload_options = Command.preload_options + daemon_options("sendstats.pid")
-#SendStatsCommand.version = get_version()
 
 class SendStatsCommand(Command):
     namespace = "sendstats"
@@ -43,7 +35,7 @@ class SendStatsCommand(Command):
     def run(self, loglevel="ERROR", logfile=None, http_port=12201,
             http_address='', app=None, detach=False, pidfile=None,
             uid=None, gid=None, umask=None, working_directory=None,
-            plugins=None, debug=False, **kwargs):
+            plugins=None, storage=None, debug=False, **kwargs):
         print("{0} {1} is starting.".format(self.namespace, self.version, ))
         app = self.app
         workdir = working_directory
@@ -64,22 +56,28 @@ class SendStatsCommand(Command):
 
         if detach:
             with detached(logfile, pidfile, uid, gid, umask, workdir):
-                self._run_sendstats(loglevel, logfile, http_port, http_address, plugins)
+                self._run_sendstats(
+                    loglevel, logfile, http_port,
+                    http_address, plugins=plugins, storage=storage)
         else:
             self._run_sendstats(
-                loglevel, logfile, http_port, http_address, plugins)
+                loglevel, logfile, http_port,
+                http_address, plugins=plugins, storage=storage)
 
-    def _run_sendstats(self, loglevel, logfile, http_port, http_address, plugins):
+    def _run_sendstats(self, loglevel, logfile, http_port,
+                       http_address, plugins, storage):
         app = self.app
-
         app.log.setup_logging_subsystem(loglevel=loglevel, logfile=logfile)
+
         logger = app.log.get_default_logger(name="celery.{0}".format(self.namespace))
         sendstats = SendStatsService(
-            logger=logger, http_port=http_port, http_address=http_address, plugins=plugins)
+            logger=logger, http_port=http_port,
+            http_address=http_address, plugins=plugins, storage=storage)
         try:
             sendstats.start()
         except Exception, exc:
-            logger.error("%s raised exception %r\n%s" % (self.namespace, exc, traceback.format_exc()))
+            logger.error("%s raised exception %r\n%s" % (
+                self.namespace, exc, traceback.format_exc()))
         except KeyboardInterrupt:
             pass
 
@@ -92,11 +90,16 @@ class SendStatsCommand(Command):
         conf = self.app.conf
         return super(SendStatsCommand, self).get_options() + (
             Option('-p', '--plugins',
-                   action='callback', type='string', default=conf.CELERY_SENDSTATS_PLUGINS,
+                   action='callback', type='string',
+                   default=conf.CELERY_SENDSTATS_PLUGINS,
                    callback=csv_callback,
                    help=("List of plugins to enable for this process, separated by\n"
                          "comma. By default all configured plugins are enabled.\n"
                          "Example: -p zabbix,logging,fluent")),
+            Option('-s', '--storage',
+                   action='store', type='string',
+                   default=getattr(conf, "CELERY_SENDSTATS_STORAGE", ""),
+                   help="file storage path. (default: memory)"),
             Option('-l', '--loglevel',
                    default=conf.CELERY_SENDSTATS_LOG_LEVEL,
                    action="store", dest="loglevel",
@@ -122,7 +125,7 @@ try:
     class SendStatsDelegate(Delegate):
         Command = SendStatsCommand
 except ImportError:
-    class SendStatsDelegate(object):  # noqa
+    class SendStatsDelegate(object):
         pass
 
 
