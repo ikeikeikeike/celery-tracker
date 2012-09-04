@@ -2,9 +2,11 @@
 Global Settings
 
 """
+
 try:
-    settings = __import__("django.conf.settings")
-except ImportError, e:
+    conf = __import__("django.conf")
+    settings = conf.conf.settings
+except ImportError:
     settings = {}
 
 
@@ -12,12 +14,12 @@ except ImportError, e:
 BROKER_URL = getattr(settings, "BROKER_URL", "amqp://guest@127.0.0.1//")
 
 
-# file storage path (default: memory)
-#CELERY_SENDSTATS_STORAGE = "/tmp/sendstats.db"
+# file storage path (default: memory),  e.g. /tmp/sendstats.db
+CELERY_SENDSTATS_STORAGE = getattr(settings, "CELERY_SENDSTATS_STORAGE", "")
 
 
-# Log Level
-CELERY_SENDSTATS_LOG_LEVEL = getattr(settings, "CELERY_SENDSTATS_LOG_LEVEL", "DEBUG")
+# Log level
+CELERY_SENDSTATS_LOG_LEVEL = getattr(settings, "CELERY_SENDSTATS_LOG_LEVEL", "INFO")
 
 
 # plugins

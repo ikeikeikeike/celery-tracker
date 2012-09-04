@@ -6,10 +6,10 @@ Booting plugins
 * Zabbix - zabbix post threading.Thread
 * Fluent - Flutnd post threading.Thread
 * Nagios - Nagios post threading.Thread
-* Munin - Munin post threading.Thread
+* Munin  - Munin  post threading.Thread
 
-Set args
---------------------
+Set arguments
+-----------------------
 
 .. highlight:: bash
 
@@ -19,7 +19,7 @@ Set args
     $ celry sendstas --plugins=zabbix,nagios,munin,fluent
 
 
-Django setting
+Configuration file
 --------------------
 
 .. highlight:: python
@@ -27,10 +27,33 @@ Django setting
 
 ::
 
-    # python
-    CELERY_SENDSTATS_PLUGINS = (
-        "path.to.class.zabbix.Zabbix", ""path.to.class.nagios.Nagios",
-    )
+    CELERY_SENDSTATS_PLUGINS = {
+        "fluent": {
+            "class": "sendstats.plugins.fluent.FluentPlugin",
+            "verbose": 0,
+            "interval": 20,
+            "tag": "celery.sendstats",
+            "host": "127.0.0.1",
+            "port": 24224
+        },
+        "zabbix": {
+            "class": "sendstats.plugins.zabbix.ZabbixPlugin",
+            "verbose": 0,
+            "interval": 20,
+            "tag": "celery.sendstats",
+            "host": "127.0.0.1",
+            "port": 10051,
+            "metrics": [
+                {"host": "celery-agent"},
+            ]
+        },
+        #"logging": {
+        #    "class": "sendstats.plugins.logging.LoggingPlugin",
+        #    "tag": "celery.sendstats",
+        #    "interval": 10,
+        #    "verbose": True
+        #},
+    }
 
 
 Reference

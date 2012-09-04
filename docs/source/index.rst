@@ -12,8 +12,10 @@ Contents:
    :maxdepth: 5
 
    installation
+   usage
    plugins
    tracking
+   customize
 
 Change History:
 

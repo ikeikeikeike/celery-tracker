@@ -85,3 +85,4 @@ ZabbixSender.py
 pyzabbix
 static
 zbxsend.py
+celery_sendstats.egg-info

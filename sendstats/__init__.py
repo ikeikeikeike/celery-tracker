@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 
 
-VERSION = (0, 2, 3, "alpha", 4)
+VERSION = (0, 2, 3, "beta", 8)
 __version__ = '.'.join(map(str, VERSION[0:3]))
 
 
