@@ -2,12 +2,12 @@
 Global Settings
 
 """
-
-try:
-    conf = __import__("django.conf")
-    settings = conf.conf.settings
-except ImportError:
-    settings = {}
+settings = {}
+# try:
+    # conf = __import__("django.conf")
+    # settings = conf.conf.settings
+# except ImportError:
+    # settings = {}
 
 
 # Broker - amqp,

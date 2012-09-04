@@ -82,11 +82,14 @@ class SendStatsCommand(Command):
             pass
 
     def get_options(self):
+        from ..configs import celeryconfig as gconf
         conf = self.app.conf
+
         return super(SendStatsCommand, self).get_options() + (
             Option('-p', '--plugins',
                    action='callback', type='string',
-                   default=conf.CELERY_SENDSTATS_PLUGINS,
+                   default=getattr(
+                       conf, "CELERY_SENDSTATS_PLUGINS", gconf.CELERY_SENDSTATS_PLUGINS),
                    callback=csv_callback,
                    help=("List of plugins to enable for this process, separated by\n"
                          "comma. By default all configured plugins are enabled.\n"
@@ -96,7 +99,8 @@ class SendStatsCommand(Command):
                    default=getattr(conf, "CELERY_SENDSTATS_STORAGE", ""),
                    help="file storage path. (default: memory)"),
             Option('-l', '--loglevel',
-                   default=conf.CELERY_SENDSTATS_LOG_LEVEL,
+                   default=getattr(
+                       conf, "CELERY_SENDSTATS_LOG_LEVEL", gconf.CELERY_SENDSTATS_LOG_LEVEL),
                    action="store", dest="loglevel",
                    help="Choose between DEBUG/INFO/WARNING/ERROR/CRITICAL."),
             Option('-P', '--port',

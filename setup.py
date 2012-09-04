@@ -47,7 +47,14 @@ setup(
     license='MIT',
     classifiers=classifiers,
     packages=find_packages(exclude=['tests', 'tests.*']),
-    install_requires=['celery', 'celerymon', 'tornado', 'fluent-logger', 'zbxsend'],
+    install_requires=[
+        'celery',
+        'celerymon',
+        'simplejson',
+        'tornado',
+        'fluent-logger',
+        'zbxsend'
+    ],
     package_data={'sendstats': ['templates/*', 'static/**/*']},
     entry_points={
         "console_scripts": [

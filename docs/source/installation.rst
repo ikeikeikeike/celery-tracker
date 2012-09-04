@@ -1,6 +1,8 @@
 Installation
 ========================
 
+.. highlight:: bash
+
 
 *Setup*
 
@@ -12,27 +14,32 @@ Installation
 celeryconfig and Django settings module.
 -------------------------------------------
 
-Global settings ::
 
-    """
-    Global Settings
+.. .. note::
 
-    """
+..   `CELERY_IGNORE_RESULT`
+
+
+
+.. highlight:: python
+
+
+Create celeryconfig.py, Or edit to settings.py ::
 
     # Broker - amqp,
-    BROKER_URL = getattr(settings, "BROKER_URL", "amqp://guest@127.0.0.1//")
+    BROKER_URL = "amqp://guest@127.0.0.1//"
 
 
     # Path to file storage.  (default: memory),  e.g. /tmp/sendstats.db
-    CELERY_SENDSTATS_STORAGE = getattr(settings, "CELERY_SENDSTATS_STORAGE", "")
+    CELERY_SENDSTATS_STORAGE = "/tmp/sendstats.db"
 
 
     # Log Level
-    CELERY_SENDSTATS_LOG_LEVEL = getattr(settings, "CELERY_SENDSTATS_LOG_LEVEL", "DEBUG")
+    CELERY_SENDSTATS_LOG_LEVEL = "INFO"
 
 
     # Plugins
-    CELERY_SENDSTATS_PLUGINS = getattr(settings, "CELERY_SENDSTATS_PLUGINS", {
+    CELERY_SENDSTATS_PLUGINS = {
         "fluent": {
             "class": "sendstats.plugins.fluent.FluentPlugin",
             "verbose": 0,
@@ -58,11 +65,7 @@ Global settings ::
         #    "interval": 10,
         #    "verbose": True
         #},
-    })
+    }
 
-
-.. note::
-
-   `CELERY_IGNORE_RESULT`
 
 

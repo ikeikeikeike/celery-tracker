@@ -3,10 +3,9 @@ Plugins
 
 Booting plugins
 
-* Zabbix - zabbix post threading.Thread
-* Fluent - Flutnd post threading.Thread
-* Nagios - Nagios post threading.Thread
-* Munin  - Munin  post threading.Thread
+* Zabbix - Zabbix threading.Thread
+* Fluent - Flutnd threading.Thread
+* Munin  - Munin  threading.Thread
 
 Set arguments
 -----------------------
