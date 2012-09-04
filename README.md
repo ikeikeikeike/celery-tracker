@@ -25,9 +25,9 @@ Zabbix Monitor
 
 
 Customize
-===========
+===================
 
-[Documentation] ()
+[Customize Documentation - celery-sendstats.rtfd.org] (http://celery-sendstats.rtfd.org)
 
 
 License
