@@ -16,8 +16,10 @@ class FluentPlugin(BasePlugin):
     def __init__(self, host, port, **kwargs):
         """
 
-        :param str host: host@celeryconfig.CELERY_SENDSTATS_PLUGINS
-        :param int port: port@celeryconfig.CELERY_SENDSTATS_PLUGINS
+        @see celeryconfig.CELERY_SENDSTATS_PLUGINS.
+
+        :param str host: Host name.
+        :param int port: Port number.
         """
         super(FluentPlugin, self).__init__(**kwargs)
 

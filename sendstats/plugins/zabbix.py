@@ -18,9 +18,12 @@ class ZabbixPlugin(BasePlugin):
 
     def __init__(self, host, port, metrics, **kwargs):
         """
-        :param str host: host@celeryconfig.CELERY_SENDSTATS_PLUGINS
-        :param int port: port@celeryconfig.CELERY_SENDSTATS_PLUGINS
-        :param dict metrics: metrics@celeryconfig.CELERY_SENDSTATS_PLUGINS
+
+        @see celeryconfig.CELERY_SENDSTATS_PLUGINS
+
+        :param str host: Host name.
+        :param int port: Port number.
+        :param dict metrics: Metric list.
         """
         super(ZabbixPlugin, self).__init__(**kwargs)
 
