@@ -3,10 +3,13 @@
 Celery SendStats
 =================
 
+....
+
 
 Screenshots
 ============
 
+....
 
 Sending log
 --------------
@@ -21,6 +24,9 @@ Sending log
 
 Zabbix Monitor
 ----------------
+
+
+...
 
 
 
