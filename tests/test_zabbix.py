@@ -4,27 +4,13 @@ from zbxsend import Metric
 from sendstats.configs.celeryconfig import CELERY_SENDSTATS_PLUGINS
 from sendstats.plugins.zabbix import ZabbixPlugin
 
+try:
+    from .utils import MockStorage
+except (ImportError, ValueError):
+    from tests.utils import MockStorage
+
 
 config = CELERY_SENDSTATS_PLUGINS["zabbix"]
-
-
-class MockStorage(object):
-
-    def event(self, plugin_name):
-        return {
-            "tasks": [],
-            "workers": [],
-            "tasks_average": {
-               "test1": 1,
-               "test2": 2,
-               "test3": 3,
-            },
-            "workers_average": {
-               "test1": 1,
-               "test2": 2,
-               "test3": 3,
-            }
-        }
 
 
 def get_kwargs():
@@ -53,7 +39,15 @@ def test_average():
 
 
 def test_send():
+    def assert_sender(metrics, host, port):
+        assert isinstance(metrics, (list, tuple, set))
+        assert isinstance(host, (str, ))
+        assert isinstance(port, (int, ))
+        for obj in metrics:
+            assert isinstance(obj, (Metric, ))
+
     plugin = ZabbixPlugin(**get_kwargs())
+    plugin.sender = assert_sender
     plugin.send()
 
 

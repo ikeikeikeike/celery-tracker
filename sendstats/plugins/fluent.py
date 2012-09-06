@@ -26,9 +26,13 @@ class FluentPlugin(BasePlugin):
         self.sender = FluentSender(
             tag=self.tag, host=self.host, port=self.port)
 
+    def pop_event(self):
+        """ Get event tracking data. """
+        return self.storage.event("fluent")
+
     def send(self):
         """ implements method """
-        event = self.storage.event("fluent")
+        event = self.pop_event()
 
         workers_average = event and event["workers_average"]
         self.sender.send(workers_average)
