@@ -73,16 +73,6 @@ lib/vetags/lang/clojure/helloworld
 .coverage
 junit-py*
 
-
 #### my project
-pipeline
-socketIO_client
-websocket.py
-fluent
 celeryconfig.py
-
-ZabbixSender.py
-pyzabbix
-static
-zbxsend.py
 celery_sendstats.egg-info
