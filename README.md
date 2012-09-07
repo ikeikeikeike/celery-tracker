@@ -1,9 +1,7 @@
 
-
 Celery SendStats
 =================
-
-Sending event tracking data for the celery.
+Sending event tracking data for the [Celery](http://celeryproject.org/).
 
 
 ZabbixPlugin
@@ -15,7 +13,7 @@ Send
 
 Receive
 
-[![ReceiveZabbix](http://dl.dropbox.com/u/6574724/Screenshots/b~o_.png)](http://dl.dropbox.com/u/6574724/Screenshots/b~o_.png )
+[![ReceiveZabbix](http://dl.dropbox.com/u/6574724/Screenshots/b~o_.png)](http://dl.dropbox.com/u/6574724/Screenshots/b~o_.png)
 
 
 FluentPlugin
@@ -44,9 +42,31 @@ Receive
 
 
 Customize
-===================
+---------------
 
 [Customize Documentation - celery-sendstats.rtfd.org] (http://celery-sendstats.rtfd.org)
+
+
+Setup
+=====
+
+*PyPI*
+
+```bash
+$ pip install celery-sendstats
+```
+
+*GitHub*
+
+[github.com/ikeikeikeike/celery-sendstats] (https://github.com/ikeikeikeike/celery-sendstats)
+
+
+
+Examples
+---------------
+
+For more information, please see the [Example](https://github.com/ikeikeikeike/celery-sendstats/tree/master/examples)
+
 
 
 License

@@ -24,6 +24,12 @@ Change History:
 
    HISTORY
 
+Source(README):
+
+.. toctree::
+   :maxdepth: 5
+
+   README
 
 Indices and tables
 ==================
