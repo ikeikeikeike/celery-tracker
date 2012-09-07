@@ -62,19 +62,23 @@ Reference
 Base
 ~~~~~~~~~~
 
-.. autoclass:: sendstats.plugins.base.BasePlugin
+
+.. automodule:: sendstats.plugins.base
    :members:
+   :undoc-members:
 
 Zabbix
 ~~~~~~~
 
-.. autoclass:: sendstats.plugins.zabbix.ZabbixPlugin
+.. automodule:: sendstats.plugins.zabbix
    :members:
+   :undoc-members:
 
 Fluent
 ~~~~~~~~~~
 
-.. autoclass:: sendstats.plugins.fluent.FluentPlugin
+.. automodule:: sendstats.plugins.fluent
    :members:
+   :undoc-members:
 
 

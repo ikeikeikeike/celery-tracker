@@ -9,8 +9,9 @@ Reference
 Storage
 ~~~~~~~~~~~~
 
-.. autoclass:: sendstats.tracking.storage.EventStorage
+.. automodule:: sendstats.tracking.storage
    :members:
+   :undoc-members:
 
 State
 ~~~~~~~~~~~~

@@ -11,7 +11,7 @@ Screenshots
 
 ....
 
-Sending log
+Send log
 --------------
 
 
@@ -22,7 +22,7 @@ Sending log
 
 
 
-Zabbix Monitor
+Zabbix monitor
 ----------------
 
 
