@@ -1,7 +1,8 @@
 
 Celery Tracker
 =================
-Sending event tracking data for the [Celery](http://celeryproject.org/).
+
+Receive/Sending event tracking data for the [Celery](http://celeryproject.org/).
 
 
 ZabbixPlugin
