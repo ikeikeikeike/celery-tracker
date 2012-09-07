@@ -1,5 +1,5 @@
-from sendstats.configs.celeryconfig import CELERY_SENDSTATS_PLUGINS
-from sendstats.tracking.storage import EventStorage
+from tracker.configs.celeryconfig import CELERY_TRACKER_PLUGINS
+from tracker.tracking.storage import EventStorage
 
 try:
     from .utils import MockStorage
@@ -13,13 +13,13 @@ def get_events():
 
 
 def test_dict():
-    storage = EventStorage(plugins=CELERY_SENDSTATS_PLUGINS, storage={})
+    storage = EventStorage(plugins=CELERY_TRACKER_PLUGINS, storage={})
     dic = storage._to_dict(dict(a=1, b=2, c=3, d=4, e=5))
     assert(isinstance(dic, (dict, )))
 
 
 def test_average():
-    storage = EventStorage(plugins=CELERY_SENDSTATS_PLUGINS, storage={})
+    storage = EventStorage(plugins=CELERY_TRACKER_PLUGINS, storage={})
     average = storage._to_average(get_events())
     assert average["number_of_retries"] == 10
     assert average["retry_sum_retries"] == 40
@@ -28,7 +28,7 @@ def test_average():
 
 def test_merge():
     mock_storage = MockStorage()
-    storage = EventStorage(plugins=CELERY_SENDSTATS_PLUGINS, storage={})
+    storage = EventStorage(plugins=CELERY_TRACKER_PLUGINS, storage={})
     event1 = mock_storage.event()
     event2 = storage._merge_events(event1, get_events(), get_events())
     for k1, k2 in zip(event1, event2):

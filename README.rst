@@ -1,4 +1,4 @@
-Celery SendStats
+Celery Tracker
 =================
 
 Sending event tracking data for the `Celery. <http://celeryproject.org/>`_
@@ -58,7 +58,7 @@ Receive
 Customize
 --------------
 
-`Customize Documentation - celery-sendstats.rtfd.org <http://celery-sendstats.rtfd.org>`_
+`Customize Documentation - celery-tracker.rtfd.org <http://celery-tracker.rtfd.org>`_
 
 
 Setup
@@ -70,16 +70,16 @@ Setup
 
 ::
 
-    $ pip install celery-sendstats
+    $ pip install celery-tracker
 
 *GitHub*
 
-`github.com/ikeikeikeike/celery-sendstats <https://github.com/ikeikeikeike/celery-sendstats>`_
+`github.com/ikeikeikeike/celery-tracker <https://github.com/ikeikeikeike/celery-tracker>`_
 
 
 Examples
 -----------
-For more information, please see the `Example <https://github.com/ikeikeikeike/celery-sendstats/tree/master/examples>`_
+For more information, please see the `Example <https://github.com/ikeikeikeike/celery-tracker/tree/master/examples>`_
 
 
 License

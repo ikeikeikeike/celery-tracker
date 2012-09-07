@@ -10,7 +10,7 @@ from .utils.loader import import_class
 from .tracking.storage import EventStorage
 
 
-class SendStatsService(object):
+class TrackerService(object):
     """ Booting class for the plugin."""
 
     def __init__(self, logger, http_port=12201, http_address='',

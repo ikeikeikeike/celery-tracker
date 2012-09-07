@@ -77,17 +77,17 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/CelerySendStats.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/CeleryTracker.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/CelerySendStats.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/CeleryTracker.qhc"
 
 devhelp:
 	$(SPHINXBUILD) -b devhelp $(ALLSPHINXOPTS) $(BUILDDIR)/devhelp
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/CelerySendStats"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/CelerySendStats"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/CeleryTracker"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/CeleryTracker"
 	@echo "# devhelp"
 
 epub:

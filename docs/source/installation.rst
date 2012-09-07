@@ -8,7 +8,7 @@ Installation
 
 ::
 
-    $ pip install celery-sendstats
+    $ pip install celery-tracker
 
 
 celeryconfig and Django settings module.
@@ -30,29 +30,29 @@ Create celeryconfig.py, Or edit to settings.py ::
     BROKER_URL = "amqp://guest@127.0.0.1//"
 
 
-    # Path to file storage.  (default: memory),  e.g. /tmp/sendstats.db
-    CELERY_SENDSTATS_STORAGE = "/tmp/sendstats.db"
+    # Path to file storage.  (default: memory),  e.g. /tmp/tracker.db
+    CELERY_TRACKER_STORAGE = "/tmp/tracker.db"
 
 
     # Log Level
-    CELERY_SENDSTATS_LOG_LEVEL = "INFO"
+    CELERY_TRACKER_LOG_LEVEL = "INFO"
 
 
     # Plugins
-    CELERY_SENDSTATS_PLUGINS = {
+    CELERY_TRACKER_PLUGINS = {
         "fluent": {
-            "class": "sendstats.plugins.fluent.FluentPlugin",
+            "class": "tracker.plugins.fluent.FluentPlugin",
             "verbose": 0,
             "interval": 20,
-            "tag": "celery.sendstats",
+            "tag": "celery.tracker",
             "host": "127.0.0.1",
             "port": 24224
         },
         "zabbix": {
-            "class": "sendstats.plugins.zabbix.ZabbixPlugin",
+            "class": "tracker.plugins.zabbix.ZabbixPlugin",
             "verbose": 0,
             "interval": 20,
-            "tag": "celery.sendstats",
+            "tag": "celery.tracker",
             "host": "127.0.0.1",
             "port": 10051,
             "metrics": [
@@ -60,8 +60,8 @@ Create celeryconfig.py, Or edit to settings.py ::
             ]
         },
         #"logging": {
-        #    "class": "sendstats.plugins.logging.LoggingPlugin",
-        #    "tag": "celery.sendstats",
+        #    "class": "tracker.plugins.logging.LoggingPlugin",
+        #    "tag": "celery.tracker",
         #    "interval": 10,
         #    "verbose": True
         #},

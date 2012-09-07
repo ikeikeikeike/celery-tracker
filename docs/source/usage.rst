@@ -8,12 +8,12 @@ Start commands
 
 ::
 
-    $ sendstats
-    sendstats 0.2.3 is starting.
+    $ tracker
+    tracker 0.2.3 is starting.
     Configuration ->
         . broker -> amqp://guest@127.0.0.1:5672//
         . webserver -> http://localhost:12201
-    sendstats has started.
+    tracker has started.
 
 
 With Celery Extention
@@ -21,12 +21,12 @@ With Celery Extention
 
 ::
 
-    $ celery sendstats --config=celeryconfig
-    sendstats 0.3.1 is starting.
+    $ celery tracker --config=celeryconfig
+    tracker 0.3.1 is starting.
     Configuration ->
         . broker -> amqp://guest@127.0.0.1:5672//
         . webserver -> http://localhost:12201
-    sendstats has started.
+    tracker has started.
 
 
 With Django
@@ -34,6 +34,6 @@ With Django
 
 ::
 
-    $ python manage.py celery sendstats --settings=project.settings --pythonpath=~/.virtualenvs/project/
+    $ python manage.py celery tracker --settings=project.settings --pythonpath=~/.virtualenvs/project/
 
 

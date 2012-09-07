@@ -26,20 +26,20 @@ Configuration file
 
 ::
 
-    CELERY_SENDSTATS_PLUGINS = {
+    CELERY_TRACKER_PLUGINS = {
         "fluent": {
-            "class": "sendstats.plugins.fluent.FluentPlugin",
+            "class": "tracker.plugins.fluent.FluentPlugin",
             "verbose": 0,
             "interval": 20,
-            "tag": "celery.sendstats",
+            "tag": "celery.tracker",
             "host": "127.0.0.1",
             "port": 24224
         },
         "zabbix": {
-            "class": "sendstats.plugins.zabbix.ZabbixPlugin",
+            "class": "tracker.plugins.zabbix.ZabbixPlugin",
             "verbose": 0,
             "interval": 20,
-            "tag": "celery.sendstats",
+            "tag": "celery.tracker",
             "host": "127.0.0.1",
             "port": 10051,
             "metrics": [
@@ -47,8 +47,8 @@ Configuration file
             ]
         },
         #"logging": {
-        #    "class": "sendstats.plugins.logging.LoggingPlugin",
-        #    "tag": "celery.sendstats",
+        #    "class": "tracker.plugins.logging.LoggingPlugin",
+        #    "tag": "celery.tracker",
         #    "interval": 10,
         #    "verbose": True
         #},
@@ -63,21 +63,21 @@ Base
 ~~~~~~~~~~
 
 
-.. automodule:: sendstats.plugins.base
+.. automodule:: tracker.plugins.base
    :members:
    :undoc-members:
 
 Zabbix
 ~~~~~~~
 
-.. automodule:: sendstats.plugins.zabbix
+.. automodule:: tracker.plugins.zabbix
    :members:
    :undoc-members:
 
 Fluent
 ~~~~~~~~~~
 
-.. automodule:: sendstats.plugins.fluent
+.. automodule:: tracker.plugins.fluent
    :members:
    :undoc-members:
 

@@ -1,7 +1,7 @@
 import logging
 
-from sendstats.configs.celeryconfig import CELERY_SENDSTATS_PLUGINS
-from sendstats.plugins.fluent import FluentPlugin
+from tracker.configs.celeryconfig import CELERY_TRACKER_PLUGINS
+from tracker.plugins.fluent import FluentPlugin
 
 try:
     from .utils import MockStorage
@@ -9,7 +9,7 @@ except (ImportError, ValueError):
     from tests.utils import MockStorage
 
 
-config = CELERY_SENDSTATS_PLUGINS["fluent"]
+config = CELERY_TRACKER_PLUGINS["fluent"]
 
 
 def get_kwargs():

@@ -9,14 +9,14 @@ Reference
 Storage
 ~~~~~~~~~~~~
 
-.. automodule:: sendstats.tracking.storage
+.. automodule:: tracker.tracking.storage
    :members:
    :undoc-members:
 
 State
 ~~~~~~~~~~~~
 
-.. automodule:: sendstats.tracking.state
+.. automodule:: tracker.tracking.state
    :members:
    :undoc-members:
 

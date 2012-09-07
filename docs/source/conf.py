@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Celery SendStats documentation build configuration file, created by
+# Celery Tracker documentation build configuration file, created by
 # sphinx-quickstart on Thu Aug 23 19:36:38 2012.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -44,7 +44,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Celery SendStats'
+project = u'Celery Tracker'
 copyright = u'2012, Tatsuo Ikeda'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -168,7 +168,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'CelerySendStatsdoc'
+htmlhelp_basename = 'CeleryTrackerdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -187,7 +187,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'CelerySendStats.tex', u'Celery SendStats Documentation',
+  ('index', 'CeleryTracker.tex', u'Celery Tracker Documentation',
    u'Tatsuo Ikeda', 'manual'),
 ]
 
@@ -217,7 +217,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'celerysendstats', u'Celery SendStats Documentation',
+    ('index', 'celerytracker', u'Celery Tracker Documentation',
      [u'Tatsuo Ikeda'], 1)
 ]
 
@@ -231,8 +231,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'CelerySendStats', u'Celery SendStats Documentation',
-   u'Tatsuo Ikeda', 'CelerySendStats', 'One line description of project.',
+  ('index', 'CeleryTracker', u'Celery Tracker Documentation',
+   u'Tatsuo Ikeda', 'CeleryTracker', 'One line description of project.',
    'Miscellaneous'),
 ]
 

@@ -11,7 +11,7 @@ version = re.compile(r'VERSION\s*=\s*\((.*?)\)')
 def get_package_version():
     "returns package version without importing it"
     base = os.path.abspath(os.path.dirname(__file__))
-    with open(os.path.join(base, "sendstats/__init__.py")) as initf:
+    with open(os.path.join(base, "tracker/__init__.py")) as initf:
         for line in initf:
             m = version.match(line.strip())
             if not m:
@@ -37,13 +37,13 @@ classifiers = [s.strip() for s in classes.split('\n') if s]
 
 
 setup(
-    name='celery-sendstats',
+    name='celery-tracker',
     version=get_package_version(),
     description='Celery Send Stats',
     long_description=open('README.rst').read(),
     author='Tatsuo Ikeda',
     author_email='jp.ne.co.jp at gmail.com',
-    url='https://github.com/ikeikeikeike/celery-sendstats',
+    url='https://github.com/ikeikeikeike/celery-tracker',
     license='MIT',
     classifiers=classifiers,
     packages=find_packages(exclude=['tests', 'tests.*']),
@@ -55,13 +55,13 @@ setup(
         'fluent-logger',
         'zbxsend'
     ],
-    package_data={'sendstats': ['templates/*', 'static/**/*']},
+    package_data={'tracker': ['templates/*', 'static/**/*']},
     entry_points={
         "console_scripts": [
-            "sendstats = sendstats.bin.sendstats:main",
+            "tracker = tracker.bin.tracker:main",
         ],
         "celery.commands": [
-            "sendstats = sendstats.bin.sendstats:SendStatsDelegate",
+            "tracker = tracker.bin.tracker:TrackerDelegate",
         ],
     }
 )

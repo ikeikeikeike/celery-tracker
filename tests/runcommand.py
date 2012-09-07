@@ -1,2 +1,2 @@
-from sendstats.bin import sendstats
-sendstats.main()
+from tracker.bin import tracker
+tracker.main()

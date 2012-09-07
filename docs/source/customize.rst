@@ -15,7 +15,7 @@ Inherit BasePlugin, Define a MyPlugin class.
     Customize Plugin
 
     """
-    from sendstats.plugins.base import BasePlugin
+    from tracker.plugins.base import BasePlugin
     import MySender
 
     class MyPlugin(BasePlugin):
@@ -31,7 +31,7 @@ Inherit BasePlugin, Define a MyPlugin class.
 
         def send(self):
             """ implements method """
-            event = self.storage.event("my")  #  CELERY_SENDSTATS_PLUGINS key.
+            event = self.storage.event("my")  #  CELERY_TRACKER_PLUGINS key.
 
             workers_average = event and event["workers_average"]
             self.sender.send(workers_average)
@@ -57,20 +57,20 @@ And set the MyPlugin into configuration file. [ @celeryconfig.py, @settings.py ]
 ::
 
     # plugins
-    CELERY_SENDSTATS_PLUGINS = {
+    CELERY_TRACKER_PLUGINS = {
         "fluent": {
-            "class": "sendstats.plugins.fluent.FluentPlugin",
+            "class": "tracker.plugins.fluent.FluentPlugin",
             "verbose": 0,
             "interval": 20,
-            "tag": "celery.sendstats",
+            "tag": "celery.tracker",
             "host": "127.0.0.1",
             "port": 24224
         },
         "zabbix": {
-            "class": "sendstats.plugins.zabbix.ZabbixPlugin",
+            "class": "tracker.plugins.zabbix.ZabbixPlugin",
             "verbose": 0,
             "interval": 20,
-            "tag": "celery.sendstats",
+            "tag": "celery.tracker",
             "host": "127.0.0.1",
             "port": 10051,
             "metrics": [
@@ -81,7 +81,7 @@ And set the MyPlugin into configuration file. [ @celeryconfig.py, @settings.py ]
             "class": "path.to.MyPlugin",
             "verbose": 0
             "interval": 15,
-            "tag": "celery.sendstats",
+            "tag": "celery.tracker",
             "host": "127.0.0.1",
             "port": 10101,
         },

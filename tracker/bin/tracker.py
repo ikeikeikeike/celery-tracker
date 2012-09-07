@@ -20,15 +20,15 @@ from celery.utils import LOG_LEVELS
 
 
 from .. import get_version
-from ..service import SendStatsService
+from ..service import TrackerService
 
 
 def csv_callback(option, opt, value, parser):
     setattr(parser.values, option.dest, value.split(','))
 
 
-class SendStatsCommand(Command):
-    namespace = "sendstats"
+class TrackerCommand(Command):
+    namespace = "tracker"
     preload_options = Command.preload_options + daemon_options("{0}.pid".format(namespace))
     version = get_version()
 
@@ -56,25 +56,25 @@ class SendStatsCommand(Command):
 
         if detach:
             with detached(logfile, pidfile, uid, gid, umask, workdir):
-                self._run_sendstats(
+                self._run_tracker(
                     loglevel, logfile, http_port,
                     http_address, plugins=plugins, storage=storage)
         else:
-            self._run_sendstats(
+            self._run_tracker(
                 loglevel, logfile, http_port,
                 http_address, plugins=plugins, storage=storage)
 
-    def _run_sendstats(self, loglevel, logfile, http_port,
+    def _run_tracker(self, loglevel, logfile, http_port,
                        http_address, plugins, storage):
         app = self.app
         app.log.setup_logging_subsystem(loglevel=loglevel, logfile=logfile)
 
         logger = app.log.get_default_logger(name="celery.{0}".format(self.namespace))
-        sendstats = SendStatsService(
+        tracker = TrackerService(
             logger=logger, http_port=http_port,
             http_address=http_address, plugins=plugins, storage=storage)
         try:
-            sendstats.start()
+            tracker.start()
         except Exception, exc:
             logger.error("%s raised exception %r\n%s" % (
                 self.namespace, exc, traceback.format_exc()))
@@ -85,22 +85,22 @@ class SendStatsCommand(Command):
         from ..configs import celeryconfig as gconf
         conf = self.app.conf
 
-        return super(SendStatsCommand, self).get_options() + (
+        return super(TrackerCommand, self).get_options() + (
             Option('-p', '--plugins',
                    action='callback', type='string',
                    default=getattr(
-                       conf, "CELERY_SENDSTATS_PLUGINS", gconf.CELERY_SENDSTATS_PLUGINS),
+                       conf, "CELERY_TRACKER_PLUGINS", gconf.CELERY_TRACKER_PLUGINS),
                    callback=csv_callback,
                    help=("List of plugins to enable for this process, separated by\n"
                          "comma. By default all configured plugins are enabled.\n"
                          "Example: -p zabbix,logging,fluent")),
             Option('-s', '--storage',
                    action='store', type='string',
-                   default=getattr(conf, "CELERY_SENDSTATS_STORAGE", ""),
+                   default=getattr(conf, "CELERY_TRACKER_STORAGE", ""),
                    help="file storage path. (default: memory)"),
             Option('-l', '--loglevel',
                    default=getattr(
-                       conf, "CELERY_SENDSTATS_LOG_LEVEL", gconf.CELERY_SENDSTATS_LOG_LEVEL),
+                       conf, "CELERY_TRACKER_LOG_LEVEL", gconf.CELERY_TRACKER_LOG_LEVEL),
                    action="store", dest="loglevel",
                    help="Choose between DEBUG/INFO/WARNING/ERROR/CRITICAL."),
             Option('-P', '--port',
@@ -121,16 +121,16 @@ try:
     # celery 3.x extension command
     from celery.bin.celery import Delegate
 
-    class SendStatsDelegate(Delegate):
-        Command = SendStatsCommand
+    class TrackerDelegate(Delegate):
+        Command = TrackerCommand
 except ImportError:
-    class SendStatsDelegate(object):
+    class TrackerDelegate(object):
         pass
 
 
 def main():
-    sendstats = SendStatsCommand()
-    sendstats.execute_from_commandline()
+    tracker = TrackerCommand()
+    tracker.execute_from_commandline()
 
 
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
 import logging
 
 from zbxsend import Metric
-from sendstats.configs.celeryconfig import CELERY_SENDSTATS_PLUGINS
-from sendstats.plugins.zabbix import ZabbixPlugin
+from tracker.configs.celeryconfig import CELERY_TRACKER_PLUGINS
+from tracker.plugins.zabbix import ZabbixPlugin
 
 try:
     from .utils import MockStorage
@@ -10,7 +10,7 @@ except (ImportError, ValueError):
     from tests.utils import MockStorage
 
 
-config = CELERY_SENDSTATS_PLUGINS["zabbix"]
+config = CELERY_TRACKER_PLUGINS["zabbix"]
 
 
 def get_kwargs():
