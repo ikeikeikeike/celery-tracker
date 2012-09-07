@@ -43,16 +43,16 @@ MuninPlugin
 
 Send
 
-.. image::
-   :width: 900px
-   :scale: 90%
+.. .. image::
+   .. :width: 900px
+   .. :scale: 90%
 
 
 Receive
 
-.. image::
-   :width: 900px
-   :scale: 90%
+.. .. image::
+   .. :width: 900px
+   .. :scale: 90%
 
 
 Customize
@@ -66,13 +66,13 @@ Setup
 
 .. highlight:: bash
 
-**PyPI**
+*PyPI*
 
 ::
 
     $ pip install celery-sendstats
 
-**GitHub**
+*GitHub*
 
 `github.com/ikeikeikeike/celery-sendstats <https://github.com/ikeikeikeike/celery-sendstats>`_
 
