@@ -36,7 +36,7 @@ class ZabbixPlugin(BasePlugin):
         """ Get event tracking data. """
         return self.storage.event("zabbix")
 
-    def send(self):
+    def running(self):
         """ implements method """
         event = self.pop_event()
 

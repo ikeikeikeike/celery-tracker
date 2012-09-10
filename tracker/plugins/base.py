@@ -48,9 +48,9 @@ class BasePlugin(threading.Thread):
     def run(self):
         """ Runner """
         while True:
-            self.send()
+            self.running()
             time.sleep(self.interval)
 
     @abc.abstractmethod
-    def send(self):
+    def running(self):
         """ Implements method """

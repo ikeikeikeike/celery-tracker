@@ -32,7 +32,7 @@ class FluentPlugin(BasePlugin):
         """ Get event tracking data. """
         return self.storage.event("fluent")
 
-    def send(self):
+    def running(self):
         """ implements method """
         event = self.pop_event()
 

@@ -74,6 +74,8 @@ class EventStorage(threading.Thread):
         """
         Get event tracking data.
 
+        .. todo:: Wrapped return object. Add Interface method.
+
         :param str plugin_name: Select from a plugins package.
         :rtype: dict
         :return: event tracking data.

@@ -48,7 +48,7 @@ def test_send():
 
     plugin = ZabbixPlugin(**get_kwargs())
     plugin.sender = assert_sender
-    plugin.send()
+    plugin.running()
 
 
 def test_logging():

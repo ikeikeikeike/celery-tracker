@@ -29,7 +29,7 @@ Inherit BasePlugin, Define a MyPlugin class.
             self.sender = MySender(
                 tag=self.tag, host=self.host, port=self.port)
 
-        def send(self):
+        def running(self):
             """ implements method """
             event = self.storage.event("my")  #  CELERY_TRACKER_PLUGINS key.
 

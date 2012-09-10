@@ -33,4 +33,4 @@ def test_send():
 
     plugin = FluentPlugin(**get_kwargs())
     plugin.sender.send = assert_sender
-    plugin.send()
+    plugin.running()

@@ -14,7 +14,7 @@ class LoggingPlugin(BasePlugin):
     def __init__(self, **kwargs):
         super(LoggingPlugin, self).__init__(**kwargs)
 
-    def send(self):
+    def running(self):
         """ implements method """
         if self.verbose:
             self.logger.debug(
