@@ -3,7 +3,7 @@ from __future__ import absolute_import
 
 
 from celerymon.consumer import EventConsumer
-from celerymon.web import WebServerThread
+#from celerymon.web import WebServerThread
 
 
 from .utils.loader import import_class
@@ -36,7 +36,7 @@ class TrackerService(object):
 
         :rtype: NoneType
         """
-        WebServerThread(port=self.http_port, address=self.http_address).start()
+#        WebServerThread(port=self.http_port, address=self.http_address).start()
         storage = EventStorage(plugins=self._get_plugins(), storage=self.storage)
         self._plugin_start(storage)
         storage.start()

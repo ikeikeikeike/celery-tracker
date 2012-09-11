@@ -3,19 +3,9 @@ Plugins
 
 Booting plugins
 
-* Zabbix - Zabbix threading.Thread
-* Fluent - Flutnd threading.Thread
-* Munin  - Munin  threading.Thread
-
-Set arguments
------------------------
-
-.. highlight:: bash
-
-
-::
-
-    $ celry sendstas --plugins=zabbix,nagios,munin,fluent
+* Zabbix  - Zabbix  threading.Thread
+* Fluent  - Flutnd  threading.Thread
+* Receive - Receive threading.Thread
 
 
 Configuration file
@@ -45,6 +35,13 @@ Configuration file
             "metrics": [
                 {"host": "celery-agent"},
             ]
+        },
+        "receive": {
+            "class": "tracker.plugins.receive.ReceivePlugin",
+            "verbose": 0,
+            "tag": "celery.tracker",
+            "host": "0.0.0.0",
+            "port": 27015,
         },
         #"logging": {
         #    "class": "tracker.plugins.logging.LoggingPlugin",
@@ -78,6 +75,13 @@ Fluent
 ~~~~~~~~~~
 
 .. automodule:: tracker.plugins.fluent
+   :members:
+   :undoc-members:
+
+Receive
+~~~~~~~~~~
+
+.. automodule:: tracker.plugins.receive
    :members:
    :undoc-members:
 

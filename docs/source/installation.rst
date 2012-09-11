@@ -59,6 +59,13 @@ Create celeryconfig.py, Or edit to settings.py ::
                 {"host": "celery-agent"},
             ]
         },
+        "receive": {
+            "class": "tracker.plugins.receive.ReceivePlugin",
+            "verbose": 0,
+            "tag": "celery.tracker",
+            "host": "0.0.0.0",
+            "port": 27015,
+        },
         #"logging": {
         #    "class": "tracker.plugins.logging.LoggingPlugin",
         #    "tag": "celery.tracker",
@@ -66,6 +73,4 @@ Create celeryconfig.py, Or edit to settings.py ::
         #    "verbose": True
         #},
     }
-
-
 

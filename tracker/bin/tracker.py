@@ -5,6 +5,7 @@ from __future__ import with_statement
 # import os
 import sys
 import traceback
+from pprint import pprint
 from celery.platforms import (
     set_process_title,
     strargv,
@@ -15,7 +16,7 @@ from celery.bin.base import (
     Option,
     daemon_options
 )
-from celerymon.bin.celerymon import STARTUP_INFO_FMT
+#from celerymon.bin.celerymon import STARTUP_INFO_FMT
 from celery.utils import LOG_LEVELS
 
 
@@ -44,13 +45,18 @@ class TrackerCommand(Command):
         if not isinstance(loglevel, int):
             loglevel = LOG_LEVELS[loglevel.upper()]
 
-        # debug server
-        print(STARTUP_INFO_FMT % {
-            "http_port": http_port,
-            "http_address": http_address or "localhost",
-            "conninfo": app.broker_connection().as_uri(),
-        })
+        print("")
+        print("Using below's plugins.")
+        pprint(plugins)
 
+        # debug server
+#        print(STARTUP_INFO_FMT % {
+#            "http_port": http_port,
+#            "http_address": http_address or "localhost",
+#            "conninfo": app.broker_connection().as_uri(),
+#        })
+
+        print("")
         print("{0} has started.".format(self.namespace))
         set_process_title("{0}".format(self.namespace), info=strargv(sys.argv))
 
