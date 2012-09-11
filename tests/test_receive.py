@@ -1,7 +1,7 @@
 import logging
 
 from tracker.configs.celeryconfig import CELERY_TRACKER_PLUGINS
-from tracker.plugins.munin import MuninPlugin
+from tracker.plugins.receive import ReceivePlugin
 
 try:
     from .utils import MockStorage
@@ -9,12 +9,12 @@ except (ImportError, ValueError):
     from tests.utils import MockStorage
 
 
-config = CELERY_TRACKER_PLUGINS["munin"]
+config = CELERY_TRACKER_PLUGINS["receive"]
 
 
 def get_kwargs():
     return {
-        "logger": logging.getLogger("test_munin"),
+        "logger": logging.getLogger("test_receive"),
         "tag": config["tag"],
         "storage": MockStorage(),
         "host": config["host"],
@@ -23,12 +23,12 @@ def get_kwargs():
 
 
 def test_event():
-    plugin = MuninPlugin(**get_kwargs())
+    plugin = ReceivePlugin(**get_kwargs())
     assert isinstance(plugin.pop_event(), (dict, ))
 
 
 #def test_average():
-#    plugin = MuninPlugin(**get_kwargs())
+#    plugin = ReceivePlugin(**get_kwargs())
 #    average = plugin._average(plugin.pop_event())
 #    assert isinstance(average, (list, ))
 #    assert len(average) == 6
@@ -44,13 +44,13 @@ def test_event():
 #        for obj in metrics:
 #            assert isinstance(obj, (Metric, ))
 #
-#    plugin = MuninPlugin(**get_kwargs())
+#    plugin = ReceivePlugin(**get_kwargs())
 #    plugin.sender = assert_sender
 #    plugin.running()
 
 
 #def test_logging():
-#    plugin = MuninPlugin(**get_kwargs())
+#    plugin = ReceivePlugin(**get_kwargs())
 #    metrics = [Metric("host-{0}".format(i), "key-{0}".format(i), "value-{0}".format(i))
 #                for i in range(0, 10)]
 #    plugin._logging(metrics[0], "info")

@@ -43,8 +43,8 @@ CELERY_TRACKER_PLUGINS = getattr(settings, "CELERY_TRACKER_PLUGINS", {
             {"host": "celery-agent"},
         ]
     },
-    "munin": {
-        "class": "tracker.plugins.munin.MuninPlugin",
+    "receive": {
+        "class": "tracker.plugins.receive.ReceivePlugin",
         "verbose": 0,
         "tag": "celery.tracker",
         "host": "0.0.0.0",

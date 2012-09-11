@@ -30,16 +30,12 @@ Receive
 
 
 
-MuninPlugin
+ReceivePlugin
 ---------------
 
-Send
+JSON response, e.g. at http://127.0.0.1:27015
 
-[![MuninPlugin]()]()
-
-Receive
-
-[![ReceiveMunin]()]()
+[![ReceivePlugin](http://dl.dropbox.com/u/6574724/Screenshots/tawa.png)](http://dl.dropbox.com/u/6574724/Screenshots/tawa.png)
 
 
 Customize

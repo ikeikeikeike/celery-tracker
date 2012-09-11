@@ -38,21 +38,14 @@ Receive
    :scale: 90%
 
 
-MuninPlugin
+ReceivePlugin
 ---------------
 
-Send
+JSON response, e.g. at http://127.0.0.1:27015
 
-.. .. image::
-   .. :width: 900px
-   .. :scale: 90%
-
-
-Receive
-
-.. .. image::
-   .. :width: 900px
-   .. :scale: 90%
+.. image:: http://dl.dropbox.com/u/6574724/Screenshots/tawa.png
+   :width: 900px
+   :scale: 90%
 
 
 Customize
