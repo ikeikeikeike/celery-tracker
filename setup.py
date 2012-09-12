@@ -39,8 +39,9 @@ classifiers = [s.strip() for s in classes.split('\n') if s]
 setup(
     name='celery-tracker',
     version=get_package_version(),
-    description='Celery Send Stats',
+    description='Receive/Sending event tracking data for the Celery',
     long_description=open('README.rst').read(),
+    keywords=['django', 'celery', 'tracking', 'agent', 'metrics'],
     author='Tatsuo Ikeda',
     author_email='jp.ne.co.jp at gmail.com',
     url='https://github.com/ikeikeikeike/celery-tracker',
