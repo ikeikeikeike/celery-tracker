@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import re
+import sys
 
 from setuptools import setup, find_packages
 
@@ -10,17 +11,13 @@ version = re.compile(r'VERSION\s*=\s*\((.*?)\)')
 
 def get_package_version():
     "returns package version without importing it"
-    base = os.path.abspath(os.path.dirname(__file__))
-    with open(os.path.join(base, "tracker/__init__.py")) as initf:
-        for line in initf:
-            m = version.match(line.strip())
-            if not m:
-                continue
-            return ".".join(m.groups()[0].split(", "))
+    sys.path.insert(0, os.path.join(
+        os.path.abspath(os.path.dirname(__file__)), "tracker"))
+    return __import__("tracker").get_version()
 
 
 classes = """
-    Development Status :: 3 - Alpha
+    Development Status :: 4 - Beta
     Intended Audience :: Developers
     License :: OSI Approved :: BSD License
     Topic :: System :: Monitoring

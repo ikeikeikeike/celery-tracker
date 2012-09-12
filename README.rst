@@ -57,8 +57,6 @@ Customize
 Setup
 =====
 
-.. highlight:: bash
-
 *PyPI*
 
 ::
@@ -72,9 +70,11 @@ Setup
 
 Examples
 -----------
+
 For more information, please see the `Example <https://github.com/ikeikeikeike/celery-tracker/tree/master/examples>`_
 
 
 License
 =========
+
 MIT License
