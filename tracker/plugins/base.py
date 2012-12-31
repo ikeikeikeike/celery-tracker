@@ -12,11 +12,13 @@ import time
 import abc   # from zope.interface import implements
 
 
+# External
 from tornado import httpserver
 from tornado import ioloop
-from celerymon.web import Site
 
 
+# Internal
+from .web import Site
 from ..receivers.base import baseHandler
 
 
@@ -49,7 +51,7 @@ class BasePlugin(threading.Thread):
         self.verbose = verbose
         self.logger = logger
         self.daemon = True
-        self.tag  = tag
+        self.tag = tag
 
     def run(self):
         """ Runner """
