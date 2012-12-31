@@ -44,16 +44,15 @@ class ZabbixPlugin(BasePlugin):
         metrics = self._average(event)
         if metrics:
             self.sender(metrics, self.host, self.port)
+        else:
+            self.logger.info("ZabbixPlugin/%s:%s tag: %s event: %r " % (
+                self.host, self.port, self.tag, event))
 
         if self.verbose > 2:
             self._logging(metrics=self._full(event), level="debug")
         else:
             metrics.sort(key=lambda x: (x.host, x.key, x.value, x.clock))
             self._logging(metrics=metrics)
-
-        if not metrics:
-            self.logger.info("ZabbixPlugin/%s:%s tag: %s event: %r " % (
-                self.host, self.port, self.tag, event))
 
     def _logging(self, metrics, level="info"):
         logger = getattr(self.logger, level)

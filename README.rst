@@ -43,7 +43,7 @@ ReceivePlugin
 
 JSON response, e.g. at http://127.0.0.1:27015
 
-.. image:: http://dl.dropbox.com/u/6574724/Screenshots/tawa.png
+.. image:: http://dl.dropbox.com/u/6574724/Screenshots/4mb9.png
    :width: 900px
    :scale: 90%
 
